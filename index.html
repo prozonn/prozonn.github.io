@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGMI Tournament - BattleZone</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('bgmi-bg.jpg') no-repeat center center/cover;
+        color: white;
+    }
+    .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: red;
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow; }
+        to { text-shadow: 0 0 15px red, 0 0 20px orange, 0 0 30px yellow; }
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px auto;
+        max-width: 800px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    h2 {
+        margin-bottom: 10px;
+        color: #ff4444;
+        text-align: center;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    button {
+        background: #ff4444;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+    button:hover {
+        background: #e63333;
+    }
+    .qr {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .qr img {
+        width: 150px;
+        height: 150px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #555;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #ff4444;
+    }
+
+    /* ✅ Stylish Thank You Popup */
+    #thankyou-message {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        background: rgba(0,0,0,0.9);
+        border: 2px solid #ffcc00;
+        color: #ffcc00;
+        padding: 25px 40px;
+        border-radius: 10px;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        box-shadow: 0px 0px 25px #ffcc00, 0px 0px 50px red;
+        opacity: 0;
+        transition: all 0.6s ease-in-out;
+        z-index: 9999;
+        animation: popup-glow 1s infinite alternate;
+    }
+    #thankyou-message.show {
+        display: block;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    @keyframes popup-glow {
+        from { text-shadow: 0 0 10px #ffcc00, 0 0 20px red, 0 0 30px orange; }
+        to { text-shadow: 0 0 20px #ff6600, 0 0 40px red, 0 0 60px yellow; }
+    }
+</style>
+</head>
+<body>
+<div class="overlay">
+    <h1>BGMI Tournament - BattleZone</h1>
+
+    <!-- Tournament List -->
+    <div class="card">
+        <h2>🎯 Tournament List (Live)</h2>
+        <table id="tournament-table">
+            <thead>
+                <tr>
+                    <th>Match Name</th>
+                    <th>Players Joined</th>
+                    <th>Max Players</th>
+                    <th>Entry Fee</th>
+                    <th>Prize Pool</th>
+                    <th>Join Link</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="card">
+        <h2>📝 Registration Form</h2>
+        <form action="https://formsubmit.co/shivamrajpootk5@gmail.com" method="POST" enctype="multipart/form-data" onsubmit="submitForm(event)">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <input type="text" name="Player Name" placeholder="Player Name" required>
+            <input type="text" name="BGMI ID" placeholder="BGMI ID" required>
+            <input type="tel" name="Mobile Number" placeholder="Mobile Number" required>
+            
+            <label for="match">Select Match:</label>
+            <select name="Match Number" required>
+                <option value="">Select Match</option>
+                <option value="Match 1">Match 1</option>
+                <option value="Match 2">Match 2</option>
+                <option value="Match 3">Match 3</option>
+                <option value="Match 4">Match 4</option>
+                <option value="Match 5">Match 5</option>
+            </select>
+
+            <select name="Entry Type" required>
+                <option value="">Select Entry Type</option>
+                <option value="solo">Solo</option>
+                <option value="duo">Duo</option>
+                <option value="squad">Squad</option>
+            </select>
+
+            <label for="screenshot">Upload Payment Screenshot:</label>
+            <input type="file" name="Payment Screenshot" accept="image/*" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Payment -->
+    <div class="card payment-section">
+        <h2>💳 Payment</h2>
+        <p>Pay using UPI: <b id="upi-id">Q144750149@ybl</b> (Name: Shivam Rajpoot)</p>
+
+        <button onclick="copyUPI()">📋 Copy UPI ID</button>
+        <button style="background:purple;" onclick="payPhonePe()">📱 Pay via PhonePe</button>
+        <button style="background:blue;" onclick="payPaytm()">💰 Pay via Paytm</button>
+
+        <div class="qr">
+            <img src="upi-qr.png" alt="UPI QR Code" style="width:200px; height:auto;">
+        </div>
+    </div>
+
+    <!-- Rules Section -->
+    <div class="card">
+        <h2>📜 Rules & Regulations</h2>
+        <button onclick="toggleRules()">Show Rules</button>
+        <div id="rules-box" style="display:none; margin-top:10px; text-align:left; line-height:1.6;">
+            <ul>
+                <li>Each player must register with correct BGMI ID and details.</li>
+                <li>Hacking, cheating or use of emulator is strictly prohibited.</li>
+                <li>No refunds will be given once payment is made.</li>
+                <li>Slots are confirmed only after successful payment.</li>
+                <li>Payment screenshot must be sent on WhatsApp <b>using the same number entered in registration form</b>.</li>
+                <li>Organizer’s decision will be final in case of disputes.</li>
+                <li>Match timings will be shared on WhatsApp group after slot confirmation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="card">
+        <h2>📞 Contact Details</h2>
+        <p><b>Name:</b> BattleZone Admin</p>
+        <p><b>Phone:</b> +91 7898758405</p>
+        <p><b>Email:</b> shivamrajpootk5@gmail.com</p>
+
+        <a href="https://instagram.com/shivam.rajpoot2.o" target="_blank" style="text-decoration:none; color:white; display:flex; align-items:center; gap:8px; margin-top:10px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+                 alt="Instagram" style="width:28px; height:28px; border-radius:6px;">
+            <span>Follow on Instagram</span>
+        </a>
+    </div>
+</div>
+
+<!-- ✅ Thank You Popup -->
+<div id="thankyou-message">🎮 THANK YOU! 🎯<br>Registration Successful</div>
+
+<script>
+    async function loadTournamentData() {
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLGA5It74p58j1Ws1bC5SIxrmVKdgLfW7SU5RmBV7ehPe81xFlFQepGcfTJtYHAHDk-re3C9HnVkIj/pub?gid=0&single=true&output=csv';
+        const response = await fetch(sheetURL);
+        const data = await response.text();
+        const rows = data.split("\n").map(r => r.split(","));
+
+        let tableBody = document.querySelector("#tournament-table tbody");
+        tableBody.innerHTML = "";
+
+        for (let i = 1; i < rows.length; i++) {
+            if(rows[i].length < 6) continue;
+            let tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${rows[i][0]}</td>
+                <td>${rows[i][1]}</td>
+                <td>${rows[i][2]}</td>
+                <td>${rows[i][3]}</td>
+                <td>${rows[i][4]}</td>
+                <td><a href="${rows[i][5]}" target="_blank" style="color: #4fc3f7;">Join</a></td>
+            `;
+            tableBody.appendChild(tr);
+        }
+    }
+
+    function copyUPI() {
+        const upi = document.getElementById("upi-id").innerText;
+        navigator.clipboard.writeText(upi).then(() => {
+            alert("UPI ID Copied: " + upi);
+        });
+    }
+
+    function payPhonePe() {
+        const upi = document.getElementById("upi-id").innerText;
+        const link = `upi://pay?pa=${upi}&pn=Shivam%20Rajpoot&am=0&cu=INR`;
+        window.location.href = link;
+    }
+
+    function payPaytm() {
+        const upi = document.getElementById("upi-id").innerText;
+        const link = `paytmmp://pay?pa=${upi}&pn=Shivam%20Rajpoot&am=0&cu=INR`;
+        window.location.href = link;
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+        const form = event.target;
+        fetch(form.action, {
+            method: "POST",
+            body: new FormData(form)
+        }).then(() => {
+            const msg = document.getElementById("thankyou-message");
+            msg.classList.add("show");
+
+            setTimeout(() => {
+                msg.classList.remove("show");
+                msg.style.display = "none";
+            }, 5000);
+
+            document.querySelector(".payment-section").scrollIntoView({ behavior: 'smooth' });
+        }).catch(() => {
+            alert("❌ Error! Please try again.");
+        });
+    }
+
+    function toggleRules() {
+        const rulesBox = document.getElementById("rules-box");
+        rulesBox.style.display = (rulesBox.style.display === "none") ? "block" : "none";
+    }
+
+    loadTournamentData();
+    setInterval(loadTournamentData, 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('bgmi-bg.jpg') no-repeat center center/cover;
+    color: white;
+}
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    min-height: 100vh;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    color: red;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { text-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow; }
+    to { text-shadow: 0 0 15px red, 0 0 20px orange, 0 0 30px yellow; }
+}
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+h2 {
+    margin-bottom: 10px;
+    color: #ff4444;
+    text-align: center;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+button:hover {
+    background: #e63333;
+}
+.qr {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.qr img {
+    width: 150px;
+    height: 150px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #555;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #ff4444;
+}
+/* Thank You Popup */
+#thankyou-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0,0,0,0.9);
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    padding: 25px 40px;
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0px 0px 25px #ffcc00, 0px 0px 50px red;
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+    z-index: 9999;
+    animation: popup-glow 1s infinite alternate;
+}
+#thankyou-message.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+@keyframes popup-glow {
+    from { text-shadow: 0 0 10px #ffcc00, 0 0 20px red, 0 0 30px orange; }
+    to { text-shadow: 0 0 20px #ff6600, 0 0 40px red, 0 0 60px yellow; }
+}
