@@ -219,53 +219,6 @@
         <label>Upload Payment Screenshot:</label>
         <input type="file" name="Payment Screenshot" accept="image/*" required>
 
-        <!-- Fill Player Details Toggle Button -->
-        <button type="button" id="player-btn" onclick="togglePlayers()" 
-                style="background:blue; color:white; padding:10px; border:none; border-radius:8px; margin-top:10px; cursor:pointer;">
-          ➕ Fill Player Details
-        </button>
-
-        <!-- Player Details Section (hidden by default) -->
-        <div id="player-section" style="display:none; margin-top:15px;">
-            <h3 style="text-align:center;">👥 Player Details</h3>
-
-            <!-- Static 5 players -->
-            <div class="player-box">
-                <h4>Player 1</h4>
-                <input type="text" name="Player 1 Name" placeholder="Name *">
-                <input type="text" name="Player 1 IGN" placeholder="IGN *">
-                <input type="text" name="Player 1 ID" placeholder="Player ID *">
-            </div>
-
-            <div class="player-box">
-                <h4>Player 2</h4>
-                <input type="text" name="Player 2 Name" placeholder="Name *">
-                <input type="text" name="Player 2 IGN" placeholder="IGN *">
-                <input type="text" name="Player 2 ID" placeholder="Player ID *">
-            </div>
-
-            <div class="player-box">
-                <h4>Player 3</h4>
-                <input type="text" name="Player 3 Name" placeholder="Name *">
-                <input type="text" name="Player 3 IGN" placeholder="IGN *">
-                <input type="text" name="Player 3 ID" placeholder="Player ID *">
-            </div>
-
-            <div class="player-box">
-                <h4>Player 4</h4>
-                <input type="text" name="Player 4 Name" placeholder="Name *">
-                <input type="text" name="Player 4 IGN" placeholder="IGN *">
-                <input type="text" name="Player 4 ID" placeholder="Player ID *">
-            </div>
-
-            <div class="player-box">
-                <h4>Player 5</h4>
-                <input type="text" name="Player 5 Name" placeholder="Name *">
-                <input type="text" name="Player 5 IGN" placeholder="IGN *">
-                <input type="text" name="Player 5 ID" placeholder="Player ID *">
-            </div>
-        </div>
-
         <button type="submit">Register</button>
     </form>
 </div>
@@ -280,19 +233,21 @@
         border: 1px solid #ccc;
         border-radius: 12px;
         box-shadow: 0 0 12px rgba(0,0,0,0.1);
-        background: rgba(255, 255, 255, 0.1); /* transparent look */
-    }
+        background: rgba(255, 255, 255, 0.1);
+
     form {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
+
     input, select {
         padding: 10px;
         font-size: 15px;
         border: 1px solid #aaa;
         border-radius: 6px;
     }
+
     button[type="submit"] {
         padding: 10px;
         background: #28a745;
@@ -302,23 +257,13 @@
         border-radius: 8px;
         cursor: pointer;
     }
+
     button[type="submit"]:hover {
         background: #218838;
     }
-    .player-box {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 8px;
-        background: rgba(255,255,255,0.6); /* light transparent background */
-    }
-    .player-box h4 {
-        margin: 0 0 8px;
-        color: darkblue;
-    }
 </style>
 
-<!-- Script to toggle forms -->
+<!-- Script to toggle form -->
 <script>
   function toggleForm() {
     var form = document.getElementById("registration-form");
@@ -333,41 +278,6 @@
       btn.innerText = "📝 Open Registration Form";
       btn.style.background = "red";
     }
-  }
-
-  function togglePlayers() {
-    var section = document.getElementById("player-section");
-    var btn = document.getElementById("player-btn");
-
-    if (section.style.display === "none" || section.style.display === "") {
-      section.style.display = "block";
-      btn.innerText = "➖ Hide Player Details";
-      btn.style.background = "darkblue";
-    } else {
-      section.style.display = "none";
-      btn.innerText = "➕ Fill Player Details";
-      btn.style.background = "blue";
-    }
-  }
-
-  function submitForm(event) {
-    event.preventDefault();
-    var form = event.target;
-
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form)
-    }).then(response => {
-      if (response.ok) {
-        alert("✅ Registration Successful!");
-        form.reset();
-        toggleForm(); // auto close after submit
-      } else {
-        alert("❌ Submission failed. Try again!");
-      }
-    }).catch(() => {
-      alert("❌ Network Error! Please try again.");
-    });
   }
 </script>
     
