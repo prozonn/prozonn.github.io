@@ -229,7 +229,7 @@
         <div id="player-section" style="display:none; margin-top:15px;">
             <h3 style="text-align:center;">👥 Player Details</h3>
 
-            <!-- Loop style, but static 5 players -->
+            <!-- Static 5 players -->
             <div class="player-box">
                 <h4>Player 1</h4>
                 <input type="text" name="Player 1 Name" placeholder="Name *">
@@ -280,7 +280,7 @@
         border: 1px solid #ccc;
         border-radius: 12px;
         box-shadow: 0 0 12px rgba(0,0,0,0.1);
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1); /* transparent look */
     }
     form {
         display: flex;
@@ -310,7 +310,7 @@
         padding: 10px;
         margin: 10px 0;
         border-radius: 8px;
-        background: #f9f9f9;
+        background: rgba(255,255,255,0.6); /* light transparent background */
     }
     .player-box h4 {
         margin: 0 0 8px;
@@ -348,6 +348,26 @@
       btn.innerText = "➕ Fill Player Details";
       btn.style.background = "blue";
     }
+  }
+
+  function submitForm(event) {
+    event.preventDefault();
+    var form = event.target;
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    }).then(response => {
+      if (response.ok) {
+        alert("✅ Registration Successful!");
+        form.reset();
+        toggleForm(); // auto close after submit
+      } else {
+        alert("❌ Submission failed. Try again!");
+      }
+    }).catch(() => {
+      alert("❌ Network Error! Please try again.");
+    });
   }
 </script>
     
