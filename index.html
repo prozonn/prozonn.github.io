@@ -448,24 +448,18 @@
     }
 
     function submitForm(event) {
-        event.preventDefault();
-        const form = event.target;
-        fetch(form.action, {
-            method: "POST",
-            body: new FormData(form)
-        }).then(() => {
-            const msg = document.getElementById("thankyou-message");
-            msg.classList.add("show");
+    event.preventDefault(); // popup animation ke liye
 
-            setTimeout(() => {
-                msg.classList.remove("show");
-                msg.style.display = "none";
-            }, 5000);
+    // 1️⃣ Show thank you popup
+    const msg = document.getElementById("thankyou-message");
+    msg.classList.add("show");
 
-            document.querySelector(".payment-section").scrollIntoView({ behavior: 'smooth' });
-        }).catch(() => {
-            alert("❌ Error! Please try again.");
-        });
+    setTimeout(() => {
+        msg.classList.remove("show");
+    }, 5000);
+
+    // 2️⃣ Submit the form normally (data will go to Gmail)
+    event.target.submit();
     }
 
     function toggleRules() {
