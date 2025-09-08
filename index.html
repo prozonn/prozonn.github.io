@@ -11,8 +11,23 @@
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "4e13d8f5-fd1c-4365-9b2e-022f6aca7132",
+      promptOptions: {
+        slidedown: {
+          enabled: true,
+          actionMessage: "🔥 Get notified about upcoming BGMI tournaments?",
+          acceptButtonText: "Yes, Notify Me!",
+          cancelButtonText: "No Thanks"
+        }
+      }
     });
   });
+
+  // Manual button ke liye function
+  function requestNotificationPermission() {
+    window.OneSignalDeferred.push(function(OneSignal) {
+      OneSignal.Notifications.requestPermission();
+    });
+  }
 </script>
     
 <style>
