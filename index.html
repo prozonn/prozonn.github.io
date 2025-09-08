@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BGMI Tournament - PROZONE</title>
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "4e13d8f5-fd1c-4365-9b2e-022f6aca7132",
+    });
+  });
+</script>
+    
 <style>
     body {
         font-family: Arial, sans-serif;
