@@ -369,6 +369,191 @@
     });
   }
 </script>
+
+<!-- ✅ Tournaments Button -->
+<button onclick="toggleTournaments()"
+        style="background:darkred; color:white; padding:12px 20px; border:none;
+               border-radius:8px; margin:15px auto; font-size:16px; cursor:pointer; 
+               display:block; width:90%;">
+  🎮 Tournaments
+</button>
+
+<!-- ✅ Tournament List Container -->
+<div id="tournamentsContainer" style="display:none; margin:20px;">
+
+  <!-- Match 1 - Afternoon -->
+  <div class="match-card">
+    <div class="match-header" onclick="toggleDetails(this)">
+      <h3>Afternoon Battle</h3>
+      <p>Date: 10 Sept | Time: 3:00 PM</p>
+    </div>
+    <div class="match-details" style="display:none;">
+      <p><b>Maps:</b> 🌍 Erangel | 🏜️ Miramar | 🌴 Sanhok</p>
+      <p><b>Entry Fee:</b> ₹30</p>
+      <p><b>Prize Pool:</b> 🥇 ₹200 | 🥈 ₹100 | 🥉 ₹50</p>
+      <p><b>No. of Players:</b> 100</p>
+      <p><b>Join Link:</b> <a href="#">Click Here</a></p>
+
+      <h4>📊 Point Table</h4>
+      <table id="pointTable1" border="1"
+             style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Win</th>
+            <th>Pp</th>
+            <th>Fp</th>
+            <th>Tp</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6">⏳ Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Match 2 - Evening -->
+  <div class="match-card">
+    <div class="match-header" onclick="toggleDetails(this)">
+      <h3>Evening Showdown</h3>
+      <p>Date: 10 Sept | Time: 7:00 PM</p>
+    </div>
+    <div class="match-details" style="display:none;">
+      <p><b>Maps:</b> 🌍 Erangel | 🏜️ Miramar | 🌴 Sanhok</p>
+      <p><b>Entry Fee:</b> ₹50</p>
+      <p><b>Prize Pool:</b> 🥇 ₹300 | 🥈 ₹150 | 🥉 ₹50</p>
+      <p><b>No. of Players:</b> 100</p>
+      <p><b>Join Link:</b> <a href="#">Click Here</a></p>
+
+      <h4>📊 Point Table</h4>
+      <table id="pointTable2" border="1"
+             style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Win</th>
+            <th>Pp</th>
+            <th>Fp</th>
+            <th>Tp</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6">⏳ Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Match 3 - Night -->
+  <div class="match-card">
+    <div class="match-header" onclick="toggleDetails(this)">
+      <h3>Night Clash</h3>
+      <p>Date: 10 Sept | Time: 9:00 PM</p>
+    </div>
+    <div class="match-details" style="display:none;">
+      <p><b>Maps:</b> 🌍 Erangel | 🏜️ Miramar | 🌴 Sanhok</p>
+      <p><b>Entry Fee:</b> ₹100</p>
+      <p><b>Prize Pool:</b> 🥇 ₹600 | 🥈 ₹300 | 🥉 ₹100</p>
+      <p><b>No. of Players:</b> 80</p>
+      <p><b>Join Link:</b> <a href="#">Click Here</a></p>
+
+      <h4>📊 Point Table</h4>
+      <table id="pointTable3" border="1"
+             style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Win</th>
+            <th>Pp</th>
+            <th>Fp</th>
+            <th>Tp</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6">⏳ Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .match-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    cursor: pointer;
+  }
+  .match-header {
+    font-weight: bold;
+    color: red;
+  }
+  .match-details {
+    margin-top: 10px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 8px;
+  }
+</style>
+
+<script>
+function toggleTournaments() {
+  let container = document.getElementById("tournamentsContainer");
+  container.style.display = (container.style.display === "none" || container.style.display === "") 
+                            ? "block" : "none";
+}
+
+// ✅ Match toggle (expand/collapse)
+function toggleDetails(header) {
+  let details = header.nextElementSibling;
+  details.style.display = (details.style.display === "none" || details.style.display === "") 
+                          ? "block" : "none";
+}
+
+// ✅ Different Google Sheet Links
+const SHEET_URLS = {
+  match1: "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6Pkk8TcmKW007o3toiaf241972kkMEA3SjcjVCmCrZQwtHTQCSyMmiHNteGTbt4lYEj7DfmZ_BLcQ/pub?output=csv", // Afternoon
+  match2: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9a46Pe1oJqcxt4ubrEZuJK4f7KshoX1pGv-l8Y7Ar0o289jOvo3JPM3R64ly_uAME7S6yaUCQhpOQ/pub?output=csv", // Evening
+  match3: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUU75XQ6tKALNHoyN2-q6S30JJHEWDIdbjtgDMunukddKs49k2rI-mPDF2b0ai-5in0dOEVRln-nzO/pub?output=csv"  // Night
+};
+
+// ✅ Loader Function
+async function loadPoints(matchId, sheetUrl) {
+  const response = await fetch(sheetUrl);
+  const data = await response.text();
+
+  const rows = data.split("\n").slice(1); 
+  const tableBody = document.querySelector(`#pointTable${matchId} tbody`);
+  tableBody.innerHTML = "";
+
+  rows.forEach(row => {
+    const cols = row.split(",");
+    if (cols.length >= 6) {
+      let tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${cols[0]}</td>
+        <td>${cols[1]}</td>
+        <td>${cols[2]}</td>
+        <td>${cols[3]}</td>
+        <td>${cols[4]}</td>
+        <td>${cols[5]}</td>
+      `;
+      tableBody.appendChild(tr);
+    }
+  });
+}
+
+// ✅ Auto Refresh for all 3 matches
+function refreshAll() {
+  loadPoints(1, SHEET_URLS.match1);
+  loadPoints(2, SHEET_URLS.match2);
+  loadPoints(3, SHEET_URLS.match3);
+}
+
+refreshAll();
+setInterval(refreshAll, 10000);
+</script>
     
     <!-- Payment -->
     <!--
