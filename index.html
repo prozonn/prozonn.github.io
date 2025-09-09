@@ -4,31 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BGMI Tournament - PROZONE</title>
-
   <script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "4e13d8f5-fd1c-4365-9b2e-022f6aca7132",
-      promptOptions: {
-        slidedown: {
-          enabled: true,
-          actionMessage: "🔥 Get notified about upcoming BGMI tournaments?",
-          acceptButtonText: "Yes, Notify Me!",
-          cancelButtonText: "No Thanks"
-        }
-      }
-    });
-  });
-
-  // ✅ Floating Button ke liye function
-  function requestNotificationPermission() {
-    window.OneSignalDeferred.push(function(OneSignal) {
-      OneSignal.Notifications.requestPermission();
-    });
-  }
-  </script>
-    
+  
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -185,26 +162,6 @@
 <body>
 <div class="overlay">
     <h1>BGMI Tournament - PROZONE</h1>
-
-  <!-- Floating Button -->
-  <button onclick="requestNotificationPermission()" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background: #ffcc00;
-    color: black;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 9999;">
-    🔔
-  </button>
-</body>
 
     <!-- Tournament List -->
     <div class="card">
