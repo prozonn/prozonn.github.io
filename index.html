@@ -202,7 +202,7 @@
         <label>Select Match:</label>
         <select name="Match Number" >
             <option value="">Select Match</option>
-            <option value="Match 1">Match 1</option>
+            <option value="Match 1 9pm">Match 1</option>
             <option value="Match 2">Match 2</option>
             <option value="Match 3">Match 3</option>
             <option value="Match 4">Match 4</option>
@@ -218,7 +218,7 @@
         </select>
 
         <label>Upload Payment Screenshot:</label>
-        <input type="file" name="Payment Screenshot" accept="image/*" >
+        <input type="file" name="Payment Screenshot" accept="image/*" required>
 
         <!-- Fill Player Details Toggle Button -->
        <!-- <button type="button" id="player-btn" onclick="togglePlayers()" 
@@ -382,7 +382,7 @@
 <!-- ✅ Tournament List Container -->
 <div id="tournamentsContainer" style="display:none; margin:20px;">
 
-  <!-- Match 1 - Afternoon -->
+  <!-- Match 1 - Afternoon --><!--
   <div class="match-card">
     <div class="match-header" onclick="toggleDetails(this)">
       <h3>Afternoon Battle</h3>
@@ -413,7 +413,7 @@
     </div>
   </div>
 
-  <!-- Match 2 - Evening -->
+  <!-- Match 2 - Evening --><!--
   <div class="match-card">
     <div class="match-header" onclick="toggleDetails(this)">
       <h3>Evening Showdown</h3>
@@ -557,7 +557,7 @@ setInterval(refreshAll, 10000);
 </script>
     
     <!-- Payment -->
-    <!--
+
     <div class="card payment-section">
         <h2>💳 Payment</h2>
         <p>Pay using UPI: <b id="upi-id">Q144750149@ybl</b> (Name: Shivam Rajpoot)</p>
@@ -570,7 +570,6 @@ setInterval(refreshAll, 10000);
             <img src="upi-qr.png" alt="UPI QR Code" style="width:200px; height:auto;">
         </div>
     </div>
-    -->
 
     <!-- ✅ Leaderboard Section -->
     <div class="card">
